@@ -76,6 +76,7 @@ EXP 1.1: DDL COMMANDS
                 
       mysql > CREATE DATABASE INVOICE;
       mysql > USE INVOICE;
+              Database changed
       mysql > CREATE TABLE CUSTOMER
               ( 
                 Id INT PRIMARY KEY,

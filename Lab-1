@@ -228,7 +228,7 @@ EXP 1.1: DDL COMMANDS
               +--------------+
               | Tables_in_Ad |
               +--------------+
-              | DUP_EMPLOYEE |
+              | D_EMPLOYEE   |
               | PERSON       |
               | STUDENT      |
               +--------------+
@@ -236,7 +236,7 @@ EXP 1.1: DDL COMMANDS
 
       7-----> Delete the table duplicate table of EMPLOYEE.
       
-      mysql > DROP TABLE DUP_EMPLOYEE;
+      mysql > DROP TABLE D_EMPLOYEE;
       mysql > SHOW TABLES;
               +--------------+
               | Tables_in_Ad |

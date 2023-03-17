@@ -1,0 +1,89 @@
+EXP 1.2 : DML COMMANDS 
+****************************************************************************************************************************************
+   a) DML COMMA()NDS-INSERT :
+      1-----> Insert values in EMPLOYEE table.
+      
+      mysql > INSERT INTO EMPLOYEE VALUES('Mishab','Balussery',2001,1112233,683645);
+      mysql > INSERT INTO EMPLOYEE VALUES('Aysha','Koduvally',2000,333322211,43223);
+      mysql > INSERT INTO EMPLOYEE VALUES('Nihal','Ponoor',2002,5544433,423234);
+      mysql > INSERT INTO EMPLOYEE VALUES('Niya','Ponoor',1998,22233555,423412);
+      mysql > INSERT INTO EMPLOYEE VALUES('Aleefa','Mukkam',2003,3332211,56654);
+      mysql > SELECT * FROM EMPLOYEE;
+              +--------+-----------+------+------------+--------+
+              | Name   | City      | DOB  | aadhaar_no | SSN    |
+              +--------+-----------+------+------------+--------+
+              | Mishab | Balussery | 2001 |    1112233 | 683645 |
+              | Aysha  | Koduvally | 2000 |  333322211 |  43223 |
+              | Nihal  | Ponoor    | 2002 |    5544433 | 423234 |
+              | Niya   | Ponoor    | 1998 |   22233555 | 423412 |
+              | Aleefa | Mukkam    | 2003 |    3332211 |  56654 |
+              +--------+-----------+------+------------+--------+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+      2-----> Insert values in STUDENT table.
+      
+      mysql > INSERT INTO STUDENT VALUES(19,'Mishab',22,'Balussery','m');
+      mysql > INSERT INTO STUDENT VALUES(09,'Aysha',22,'Koduvally','f');
+      mysql > INSERT INTO STUDENT VALUES(23,'Niahl',22,'Ponoor','m');
+      mysql > INSERT INTO STUDENT VALUES(24,'Niya',24,'Ponoor','f');
+      mysql > INSERT INTO STUDENT VALUES(03,'Aleefa',21,'Mukkam','f');
+      mysql > SELECT * FROM STUDENT;
+              +---------+--------+------+-----------+--------+
+              | roll_no | Name   | Age  | Adress    | Gender |
+              +---------+--------+------+-----------+--------+
+              |       3 | Aleefa |   21 | Mukkam    | f      |
+              |       9 | Aysha  |   22 | Koduvally | f      |
+              |      19 | Mishab |   22 | Balussery | m      |
+              |      23 | Niahl  |   22 | Ponoor    | m      |
+              |      24 | Niya   |   24 | Ponoor    | f      |
+              +---------+--------+------+-----------+--------+
+-------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+      3-----> Insert values in INVOICE database. 
+      
+      mysql > INSERT INTO CUSTOMER VALUES(100,'Mishab','Balussery','Kozhikode',5345453434);
+      mysql > INSERT INTO CUSTOMER VALUES(101,'Nihal','Ponoor','Kozhikode',312313213);
+      mysql > INSERT INTO CUSTOMER VALUES(102,'Aysha','Koduvally','Kozhikode',77567675656);
+      mysql > INSERT INTO CUSTOMER VALUES(103,'Niya','Ponoor','Kozhikode',1424234543);
+      mysql > INSERT INTO CUSTOMER VALUES(104,'Aleefa','Mukkam','Kozhikode',8989978789);
+      mysql > INSERT INTO CUSTOMER VALUES(105,'Salha','Koduvally','Kozhikode',9435453434);
+      mysql > SELECT * FROM CUSTOMER;
+              +-----+--------+-----------+-----------+-------------+
+              | Id  | NAME   | ADDRESS   | CITY      | PH_NO       |
+              +-----+--------+-----------+-----------+-------------+
+              | 100 | Mishab | Balussery | Kozhikode | 5345453434  |
+              | 101 | Nihal  | Ponoor    | Kozhikode | 312313213   |
+              | 102 | Aysha  | Koduvally | Kozhikode | 77567675656 |
+              | 103 | Niya   | Ponoor    | Kozhikode | 1424234543  |
+              | 104 | Aleefa | Mukkam    | Kozhikode | 8989978789  |
+              | 105 | Salha  | Koduvally | Kozhikode | 9435453434  |
+              +-----+--------+-----------+-----------+-------------+
+=============================================================================================================================================================
+   
+   b)DML COMMANDS- UPDATE :  
+      1-----> Update the price of a particular product.
+-------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+      2-----> Change the name of city ‘calicut’ to ‘kozhikode’ in the customer table. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+      3-----> Update all prices with 2% of its original price.
+      
+-------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+      4-----> Change the address, city, phone number of a particular customer.
+-------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+      5-----> Change the quantity of a purchased product of inv_id ‘101’
+     
+=============================================================================================================================================================      
+   c) DML COMMAND- DELETE :
+      1-----> Delete the record of customer id ‘10001’.
+      2-----> Delete all purchase details of items its quantity less than 2. 
+      3-----> Delete the purchase details of product ‘pen’ in the in_id ‘101’. 
+      4-----> Delete details of employees who does not have phone number. 
+      5-----> Delete all records from STUDENT table. 
+      6-----> Delete Invoice details of a particular customer. 
+      7-----> Delete the first two records of INVOICE_ITEM table its purchase quantity is high
+               
+            

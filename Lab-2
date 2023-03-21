@@ -58,32 +58,223 @@ EXP 1.2 : DML COMMANDS
               | 104 | Aleefa | Mukkam    | Kozhikode | 8989978789  |
               | 105 | Salha  | Koduvally | Kozhikode | 9435453434  |
               +-----+--------+-----------+-----------+-------------+
+              
 =============================================================================================================================================================
+
+  b)DML COMMANDS- UPDATE :  
+      ## INSERTING PRODUCT TABLE
+      -------------------------
+      mysql > INSERT INTO PRODUCT VALUES(101,'Orange',50);
+      mysql > INSERT INTO PRODUCT VALUES(102,'Apple',34);
+      mysql > INSERT INTO PRODUCT VALUES(103,'Graphe',57);
+      mysql > INSERT INTO PRODUCT VALUES(104,'Banana',71);
+      mysql > INSERT INTO PRODUCT VALUES(105,'Tomato',43);
+      mysql > INSERT INTO PRODUCT VALUES(106,'Onion',52);
+      mysql > INSERT INTO PRODUCT VALUES(107,'Avacado',100);
+      mysql > INSERT INTO PRODUCT VALUES(108,'Pinapple',22);
+      mysql > INSERT INTO PRODUCT VALUES(109,'Anar',13);
+      mysql > INSERT INTO PRODUCT VALUES(110,'Waterlemon',24);
+      mysql > SELECT * FROM PRODUCT;
+               +-----+------------+-------+    
+               | PID | PNAME      | PRICE |
+               +-----+------------+-------+
+               | 101 | Orange     |    50 |
+               | 102 | Apple      |    34 |
+     `         | 103 | Graphe     |    57 |
+               | 104 | Banana     |    71 |
+               | 105 | Tomato     |    43 |
+               | 106 | Onion      |    52 |
+               | 107 | Avacado    |   100 |
+               | 108 | Pinapple   |    22 |
+               | 109 | Anar       |    13 |
+               | 110 | Waterlemon |    24 |
+               +-----+------------+-------+
+               
+      ## INSERTING INVOICE_MASTER TABLE
+      -------------------------
+      mysql > INSERT INTO INVOICE_MASTER VALUES(656456,100,'2023-03-12');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(5435356,101,'2023-03-12');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(6535356,102,'2023-05-11');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(3325356,102,'2023-05-09');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(725356,105,'2023-01-29');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(435256,101,'2023-01-24');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(115256,104,'2023-01-24');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(11088,102,'2023-07-24');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(4324088,103,'2023-02-11');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(7784088,102,'2023-02-18');
+      mysql > INSERT INTO INVOICE_MASTER VALUES(77088,100,'2023-02-11');
+      mysql > SELECT * FROM INVOICE_MASTER;
+               +---------+---------+------------+
+               | INV_ID  | CUST_ID | INV_DATE   |
+               +---------+---------+------------+ 
+               |   11088 |     102 | 2023-07-24 |
+               |   77088 |     100 | 2023-02-11 |
+               |  115256 |     104 | 2023-01-24 |
+               |  435256 |     101 | 2023-01-24 |
+               |  656456 |     100 | 2023-03-12 |
+               |  725356 |     105 | 2023-01-29 |
+               | 3325356 |     102 | 2023-05-09 |
+               | 4324088 |     103 | 2023-02-11 |
+               | 5435356 |     101 | 2023-03-12 |
+               | 6535356 |     102 | 2023-05-11 |
+               | 7784088 |     102 | 2023-02-18 |
+               +---------+---------+------------+
+               
+      ## INSERTING INVOICE_ITEM TABLE
+      -------------------------               
+      mysql > INSERT INTO INVOICE_ITEM VALUES(11088,102,10);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(77088,101,14);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(3325356,104,24);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(77088,101,24);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(115256,103,10);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(435256,110,20);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(656456,109,30);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(725356,108,40);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(4324088,107,10);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(5435356,106,13);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(6535356,105,11);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(6535356,104,44);
+      mysql > INSERT INTO INVOICE_ITEM VALUES(7784088,101,32);
+      mysql > SELECT * FROM INVOICE_ITEM;
+               +---------+------+----------+
+               | INV_ID  | PID  | QUANTITY |
+               +---------+------+----------+
+               |   11088 |  102 |       10 |
+               |   77088 |  101 |       14 |
+               | 3325356 |  104 |       24 |
+               |   77088 |  101 |       24 |
+               |  115256 |  103 |       10 |
+               |  435256 |  110 |       20 |
+               |  656456 |  109 |       30 |
+               |  725356 |  108 |       40 |
+               | 4324088 |  107 |       10 |
+               | 5435356 |  106 |       13 |
+               | 6535356 |  105 |       11 |
+               | 6535356 |  104 |       44 |
+               | 7784088 |  101 |       32 |
+               +---------+------+----------+
+               
    
    b)DML COMMANDS- UPDATE :  
       1-----> Update the price of a particular product.
+    
+      mysql > UPDATE PRODUCT SET PRICE=30 WHERE PID=109;
+      mysql > SELECT * FROM PRODUCT;
+               +-----+------------+-------+
+               | PID | PNAME      | PRICE |
+               +-----+------------+-------+
+               | 101 | Orange     |    50 |
+               | 102 | Apple      |    34 |
+               | 103 | Graphe     |    57 |
+               | 104 | Banana     |    71 |
+               | 105 | Tomato     |    43 |
+               | 106 | Onion      |    52 |
+               | 107 | Avacado    |   100 |
+               | 108 | Pinapple   |    22 |
+               | 109 | Anar       |    30 |
+               | 110 | Waterlemon |    24 |
+               +-----+------------+-------+          
 -------------------------------------------------------------------------------------------------------------------------------------------------------  
 
       2-----> Change the name of city ‘calicut’ to ‘kozhikode’ in the customer table. 
+      
+      mysql > UPDATE CUSTOMER SET CITY='Calicut' WHERE CITY='Kozhikode';
+      mysql > SELECT * FROM CUSTOMER;
+               +-----+--------+-----------+---------+-------------+
+               | Id  | NAME   | ADDRESS   | CITY    | PH_NO       |
+               +-----+--------+-----------+---------+-------------+
+               | 100 | Mishab | Balussery | Calicut | 5345453434  |
+               | 101 | Nihal  | Ponoor    | Calicut | 312313213   |
+               | 102 | Aysha  | Koduvally | Calicut | 77567675656 |
+               | 103 | Niya   | Ponoor    | Calicut | 1424234543  |
+               | 104 | Aleefa | Mukkam    | Calicut | 8989978789  |
+               | 105 | Salha  | Koduvally | Calicut | 9435453434  |
+               +-----+--------+-----------+---------+-------------+
 -------------------------------------------------------------------------------------------------------------------------------------------------------  
 
       3-----> Update all prices with 2% of its original price.
       
+      mysql > UPDATE PRODUCT SET PRICE=PRICE-(PRICE*2/100);
+      mysql > SELECT * FROM PRODUCT;
+               +-----+------------+-------+
+               | PID | PNAME      | PRICE |
+               +-----+------------+-------+
+               | 101 | Orange     |    49 |
+               | 102 | Apple      |    33 |
+               | 103 | Graphe     |    56 |
+               | 104 | Banana     |    70 |
+               | 105 | Tomato     |    42 |
+               | 106 | Onion      |    51 |
+               | 107 | Avacado    |    98 |
+               | 108 | Pinapple   |    22 |
+               | 109 | Anar       |    29 |
+               | 110 | Waterlemon |    24 |
+               +-----+------------+-------+
 -------------------------------------------------------------------------------------------------------------------------------------------------------  
 
       4-----> Change the address, city, phone number of a particular customer.
+      
+      mysql > UPDATE CUSTOMER SET ADDRESS='Mukkam',CITY='Kozhikode',PH_NO=99886665 WHERE ID=105
+      mysql > SELECT * FROM CUSTOMER;
+               +-----+--------+-----------+-----------+-------------+
+               | Id  | NAME   | ADDRESS   | CITY      | PH_NO       |
+               +-----+--------+-----------+-----------+-------------+
+               | 100 | Mishab | Balussery | Calicut   | 5345453434  |
+               | 101 | Nihal  | Ponoor    | Calicut   | 312313213   |
+               | 102 | Aysha  | Koduvally | Calicut   | 77567675656 |
+               | 103 | Niya   | Ponoor    | Calicut   | 1424234543  |
+               | 104 | Aleefa | Mukkam    | Calicut   | 8989978789  |
+               | 105 | Salha  | Mukkam    | Kozhikode | 99886665    |
+               +-----+--------+-----------+-----------+-------------+
 -------------------------------------------------------------------------------------------------------------------------------------------------------  
 
       5-----> Change the quantity of a purchased product of inv_id ‘101’
-     
-=============================================================================================================================================================      
-   c) DML COMMAND- DELETE :
-      1-----> Delete the record of customer id ‘10001’.
-      2-----> Delete all purchase details of items its quantity less than 2. 
-      3-----> Delete the purchase details of product ‘pen’ in the in_id ‘101’. 
-      4-----> Delete details of employees who does not have phone number. 
-      5-----> Delete all records from STUDENT table. 
-      6-----> Delete Invoice details of a particular customer. 
-      7-----> Delete the first two records of INVOICE_ITEM table its purchase quantity is high
+      
+      mysql > UPDATE INVOICE_ITEM SET QUANTITY=4 WHERE INV_ID=77088 AND PID=101;
+      mysql > SELECT * FROM INVOICE_ITEM;
+               +---------+------+----------+
+               | INV_ID  | PID  | QUANTITY |
+               +---------+------+----------+
+               |   11088 |  102 |       10 |
+               |   77088 |  101 |        4 |
+               | 3325356 |  104 |       24 |
+               |   77088 |  101 |        4 |
+               |  115256 |  103 |       10 |
+               |  435256 |  110 |       20 |
+               |  656456 |  109 |       30 |
+               |  725356 |  108 |       40 |
+               | 4324088 |  107 |       10 |
+               | 5435356 |  106 |       13 |
+               | 6535356 |  105 |       11 |
+               | 6535356 |  104 |       44 |
+               | 7784088 |  101 |       32 |
+               +---------+------+----------+
                
+=============================================================================================================================================================      
+  
+  c) DML COMMAND- DELETE :
+      1-----> Delete the record of customer id ‘10001’.
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+      2-----> Delete all purchase details of items its quantity less than 2. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------      
+      3-----> Delete the purchase details of product ‘pen’ in the in_id ‘101’.
+-------------------------------------------------------------------------------------------------------------------------------------------------------      
+      4-----> Delete details of employees who does not have phone number. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------      
+      5-----> Delete all records from STUDENT table. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+      6-----> Delete Invoice details of a particular customer. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+      7-----> Delete the first two records of INVOICE_ITEM table its purchase quantity is high
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+               
+               
+               
+               
+               
+               
+               
+               
+               
+    
             

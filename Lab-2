@@ -47,17 +47,23 @@ EXP 1.2 : DML COMMANDS
       mysql > INSERT INTO CUSTOMER VALUES(103,'Niya','Ponoor','Kozhikode',1424234543);
       mysql > INSERT INTO CUSTOMER VALUES(104,'Aleefa','Mukkam','Kozhikode',8989978789);
       mysql > INSERT INTO CUSTOMER VALUES(105,'Salha','Koduvally','Kozhikode',9435453434);
+      mysql > INSERT INTO CUSTOMER(Id,NAME,ADDRESS,CITY) VALUES(106,'Karthik','Perinthalmanna','Palakkad');
+      mysql > INSERT INTO CUSTOMER(Id,NAME,ADDRESS,CITY) VALUES(107,'Hiba','Perinthalmanna','Malappuram');
+
       mysql > SELECT * FROM CUSTOMER;
-              +-----+--------+-----------+-----------+-------------+
-              | Id  | NAME   | ADDRESS   | CITY      | PH_NO       |
-              +-----+--------+-----------+-----------+-------------+
-              | 100 | Mishab | Balussery | Kozhikode | 5345453434  |
-              | 101 | Nihal  | Ponoor    | Kozhikode | 312313213   |
-              | 102 | Aysha  | Koduvally | Kozhikode | 77567675656 |
-              | 103 | Niya   | Ponoor    | Kozhikode | 1424234543  |
-              | 104 | Aleefa | Mukkam    | Kozhikode | 8989978789  |
-              | 105 | Salha  | Koduvally | Kozhikode | 9435453434  |
-              +-----+--------+-----------+-----------+-------------+
+               +-----+---------+----------------+------------+-------------+
+               | Id  | NAME    | ADDRESS        | CITY       | PH_NO       |
+               +-----+---------+----------------+------------+-------------+
+               | 100 | Mishab  | Balussery      | Calicut    | 5345453434  |
+               | 101 | Nihal   | Ponoor         | Calicut    | 312313213   |
+               | 102 | Aysha   | Koduvally      | Calicut    | 77567675656 |
+               | 103 | Niya    | Ponoor         | Calicut    | 1424234543  |
+               | 104 | Aleefa  | Mukkam         | Calicut    | 8989978789  |
+               | 105 | Salha   | Mukkam         | Calicut    | 99886665    |
+               | 106 | Karthik | Perinthalmanna | Palakkad   | NULL        |
+               | 107 | Hiba    | Perinthalmanna | Malappuram | NULL        |
+               +-----+---------+----------------+------------+-------------+
+
               
 =============================================================================================================================================================
 
@@ -180,16 +186,19 @@ EXP 1.2 : DML COMMANDS
       
       mysql > UPDATE CUSTOMER SET CITY='Calicut' WHERE CITY='Kozhikode';
       mysql > SELECT * FROM CUSTOMER;
-               +-----+--------+-----------+---------+-------------+
-               | Id  | NAME   | ADDRESS   | CITY    | PH_NO       |
-               +-----+--------+-----------+---------+-------------+
-               | 100 | Mishab | Balussery | Calicut | 5345453434  |
-               | 101 | Nihal  | Ponoor    | Calicut | 312313213   |
-               | 102 | Aysha  | Koduvally | Calicut | 77567675656 |
-               | 103 | Niya   | Ponoor    | Calicut | 1424234543  |
-               | 104 | Aleefa | Mukkam    | Calicut | 8989978789  |
-               | 105 | Salha  | Koduvally | Calicut | 9435453434  |
-               +-----+--------+-----------+---------+-------------+
+               +-----+---------+----------------+------------+-------------+
+               | Id  | NAME    | ADDRESS        | CITY       | PH_NO       |
+               +-----+---------+----------------+------------+-------------+
+               | 100 | Mishab  | Balussery      | Calicut    | 5345453434  |
+               | 101 | Nihal   | Ponoor         | Calicut    | 312313213   |
+               | 102 | Aysha   | Koduvally      | Calicut    | 77567675656 |
+               | 103 | Niya    | Ponoor         | Calicut    | 1424234543  |
+               | 104 | Aleefa  | Mukkam         | Calicut    | 8989978789  |
+               | 105 | Salha   | Mukkam         | Calicut    | 99886665    |
+               | 106 | Karthik | Perinthalmanna | Palakkad   | NULL        |
+               | 107 | Hiba    | Perinthalmanna | Malappuram | NULL        |
+               +-----+---------+----------------+------------+-------------+
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------  
 
       3-----> Update all prices with 2% of its original price.
@@ -216,16 +225,19 @@ EXP 1.2 : DML COMMANDS
       
       mysql > UPDATE CUSTOMER SET ADDRESS='Mukkam',CITY='Kozhikode',PH_NO=99886665 WHERE ID=105
       mysql > SELECT * FROM CUSTOMER;
-               +-----+--------+-----------+-----------+-------------+
-               | Id  | NAME   | ADDRESS   | CITY      | PH_NO       |
-               +-----+--------+-----------+-----------+-------------+
-               | 100 | Mishab | Balussery | Calicut   | 5345453434  |
-               | 101 | Nihal  | Ponoor    | Calicut   | 312313213   |
-               | 102 | Aysha  | Koduvally | Calicut   | 77567675656 |
-               | 103 | Niya   | Ponoor    | Calicut   | 1424234543  |
-               | 104 | Aleefa | Mukkam    | Calicut   | 8989978789  |
-               | 105 | Salha  | Mukkam    | Kozhikode | 99886665    |
-               +-----+--------+-----------+-----------+-------------+
+               +-----+---------+----------------+------------+-------------+
+               | Id  | NAME    | ADDRESS        | CITY       | PH_NO       |
+               +-----+---------+----------------+------------+-------------+
+               | 100 | Mishab  | Balussery      | Calicut    | 5345453434  |
+               | 101 | Nihal   | Ponoor         | Calicut    | 312313213   |
+               | 102 | Aysha   | Koduvally      | Calicut    | 77567675656 |
+               | 103 | Niya    | Ponoor         | Calicut    | 1424234543  |
+               | 104 | Aleefa  | Mukkam         | Calicut    | 8989978789  |
+               | 105 | Salha   | Mukkam         | Kozhikode  | 99886665    |
+               | 106 | Karthik | Perinthalmanna | Palakkad   | NULL        |
+               | 107 | Hiba    | Perinthalmanna | Malappuram | NULL        |
+               +-----+---------+----------------+------------+-------------+
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------  
 
       5-----> Change the quantity of a purchased product of inv_id ‘101’
@@ -253,20 +265,124 @@ EXP 1.2 : DML COMMANDS
 =============================================================================================================================================================      
   
   c) DML COMMAND- DELETE :
-      1-----> Delete the record of customer id ‘10001’.
+      1-----> Delete the record of customer id ‘103’.
+      
+      mysql > DELETE FROM INVOICE_ITEM WHERE INV_ID=4324088;
+      mysql > DELETE FROM INVOICE_MASTER WHERE INV_ID=4324088;
+      mysql > DELETE FROM CUSTOMER WHERE Id=103;
+      mysql > SELECT * FROM CUSTOMER;
+               +-----+---------+----------------+------------+-------------+
+               | Id  | NAME    | ADDRESS        | CITY       | PH_NO       |
+               +-----+---------+----------------+------------+-------------+
+               | 100 | Mishab  | Balussery      | Calicut    | 5345453434  |
+               | 101 | Nihal   | Ponoor         | Calicut    | 312313213   |
+               | 102 | Aysha   | Koduvally      | Calicut    | 77567675656 |
+               | 104 | Aleefa  | Mukkam         | Calicut    | 8989978789  |
+               | 105 | Salha   | Mukkam         | Kozhikode  | 99886665    |
+               | 106 | Karthik | Perinthalmanna | Palakkad   | NULL        |
+               | 107 | Hiba    | Perinthalmanna | Malappuram | NULL        |
+               +-----+---------+----------------+------------+-------------+
 -------------------------------------------------------------------------------------------------------------------------------------------------------
-      2-----> Delete all purchase details of items its quantity less than 2. 
+     
+      2-----> Delete all purchase details of items its quantity less than 5. 
+      
+      mysql > DELETE FROM INVOICE_ITEM WHERE QUANTITY<5;
+      mysql > SELECT * FROM INVOICE_ITEM;
+               +---------+------+----------+
+               | INV_ID  | PID  | QUANTITY |
+               +---------+------+----------+
+               |   11088 |  102 |       10 |
+               | 3325356 |  104 |       24 |
+               |  115256 |  103 |       10 |
+               |  435256 |  110 |       20 |
+               |  656456 |  109 |       30 |
+               |  725356 |  108 |       40 |
+               | 5435356 |  106 |       13 |
+               | 6535356 |  105 |       11 |
+               | 6535356 |  104 |       44 |
+               | 7784088 |  101 |       32 |
+               +---------+------+----------+
 -------------------------------------------------------------------------------------------------------------------------------------------------------      
-      3-----> Delete the purchase details of product ‘pen’ in the in_id ‘101’.
+     
+     3-----> Delete the purchase details of product ‘Banana’ in the in_id ‘3325356’.
+     
+     mysql > DELETE FROM INVOICE_ITEM WHERE INV_ID=3325356 AND PID=104;
+     mysql > SELECT * FROM INVOICE_ITEM;
+               +---------+------+----------+
+               | INV_ID  | PID  | QUANTITY |
+               +---------+------+----------+
+               |   11088 |  102 |       10 |
+               |  115256 |  103 |       10 |
+               |  435256 |  110 |       20 |
+               |  656456 |  109 |       30 |
+               |  725356 |  108 |       40 |
+               | 5435356 |  106 |       13 |
+               | 6535356 |  105 |       11 |
+               | 6535356 |  104 |       44 |
+               | 7784088 |  101 |       32 |
+               +---------+------+----------+
 -------------------------------------------------------------------------------------------------------------------------------------------------------      
+  
       4-----> Delete details of employees who does not have phone number. 
+      
+      mysql > DELETE FROM CUSTOMER WHERE PH_NO IS NULL;
+      mysql > SELECT * FROM CUSTOMER;
+               +-----+--------+-----------+-----------+-------------+
+               | Id  | NAME   | ADDRESS   | CITY      | PH_NO       |
+               +-----+--------+-----------+-----------+-------------+
+               | 100 | Mishab | Balussery | Calicut   | 5345453434  |
+               | 101 | Nihal  | Ponoor    | Calicut   | 312313213   |
+               | 102 | Aysha  | Koduvally | Calicut   | 77567675656 |
+               | 104 | Aleefa | Mukkam    | Calicut   | 8989978789  |
+               | 105 | Salha  | Mukkam    | Kozhikode | 99886665    |
+               +-----+--------+-----------+-----------+-------------+
 -------------------------------------------------------------------------------------------------------------------------------------------------------      
+     
       5-----> Delete all records from STUDENT table. 
+      
+      mysql > DELETE FROM STUDENT;
+      mysql > SELECT * FROM STUDENT;
+              Empty set (0.00 sec)
 -------------------------------------------------------------------------------------------------------------------------------------------------------
+      
       6-----> Delete Invoice details of a particular customer. 
+      
+      mysql > DELETE FROM INVOICE_MASTER WHERE CUST_ID=106;
+      mysql > SELECT * FROM INVOICE_MASTER;
+               +---------+---------+------------+
+               | INV_ID  | CUST_ID | INV_DATE   |
+               +---------+---------+------------+
+               |   11088 |     102 | 2023-07-24 |
+               |   77088 |     100 | 2023-02-11 |
+               |  115256 |     104 | 2023-01-24 |
+               |  435256 |     101 | 2023-01-24 |
+               |  656456 |     100 | 2023-03-12 |
+               |  725356 |     105 | 2023-01-29 |
+               | 3325356 |     102 | 2023-05-09 |
+               | 5435356 |     101 | 2023-03-12 |
+               | 6535356 |     102 | 2023-05-11 |
+               | 7784088 |     102 | 2023-02-18 |
+               +---------+---------+------------+
 -------------------------------------------------------------------------------------------------------------------------------------------------------
-      7-----> Delete the first two records of INVOICE_ITEM table its purchase quantity is high
--------------------------------------------------------------------------------------------------------------------------------------------------------
+      
+      7-----> Delete the first two records of INVOICE_ITEM table its purchase quantity is high.
+      
+      mysql > DELETE FROM INVOICE_ITEM ORDER BY QUANTITY DESC LIMIT 2;
+      mysql > SELECT * FROM INVOICE_ITEM;
+               +---------+------+----------+
+               | INV_ID  | PID  | QUANTITY |
+               +---------+------+----------+
+               |   11088 |  102 |       10 |
+               |  115256 |  103 |       10 |
+               |  435256 |  110 |       20 |
+               |  656456 |  109 |       30 |
+               | 5435356 |  106 |       13 |
+               | 6535356 |  105 |       11 |
+               | 7784088 |  101 |       32 |
+               +---------+------+----------+
+
+
+=======================================================================================================================================================
                
                
                

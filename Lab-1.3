@@ -1,0 +1,187 @@
+EXP 1.2 : TCL & DCL COMMANDS 
+****************************************************************************************************************************************
+   a) TCL COMMANDS :
+      1-----> Commit
+      
+      mysql > SET AUTOCOMMIT=OFF;
+              Query OK, 0 rows affected (0.00 sec)
+              
+      mysql > INSERT INTO EMPLOYEE(NAME,CITY,AADHAAR_NO) VALUES('Minhaj','Malappuram',66545);
+              Query OK, 1 row affected (0.04 sec)
+      
+      mysql > COMMIT;
+              Query OK, 0 rows affected (0.04 sec)
+              
+      mysql > SELECT * FROM EMPLOYEE;
+              +--------+------------+------+------------+--------+
+              | Name   | City       | DOB  | aadhaar_no | SSN    |
+              +--------+------------+------+------------+--------+
+              | Mishab | Balussery  | 2001 |    1112233 | 683645 |
+              | Aysha  | Koduvally  | 2000 |  333322211 |  43223 |
+              | Nihal  | Ponoor     | 2002 |    5544433 | 423234 |
+              | Niya   | Ponoor     | 1998 |   22233555 | 423412 |
+              | Aleefa | Mukkam     | 2003 |    3332211 |  56654 |
+              | Minhaj | Malappuram | NULL |      66545 |   NULL |
+              +--------+------------+------+------------+--------+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+      
+      2-----> Rollback
+      
+      mysql > DELETE FROM EMPLOYEE WHERE NAME="Minhaj";
+              Query OK, 1 row affected (0.05 sec)
+            
+      mysql > select * from EMPLOYEE;
+              +--------+-----------+------+------------+--------+
+              | Name   | City      | DOB  | aadhaar_no | SSN    |
+              +--------+-----------+------+------------+--------+
+              | Mishab | Balussery | 2001 |    1112233 | 683645 |
+              | Aysha  | Koduvally | 2000 |  333322211 |  43223 |
+              | Nihal  | Ponoor    | 2002 |    5544433 | 423234 |
+              | Niya   | Ponoor    | 1998 |   22233555 | 423412 |
+              | Aleefa | Mukkam    | 2003 |    3332211 |  56654 |
+              +--------+-----------+------+------------+--------+
+              
+      mysql > ROLLBACK;
+              Query OK, 0 rows affected (0.05 sec)
+       
+      mysql > SELECT * FROM EMPLOYEE;
+              +--------+------------+------+------------+--------+
+              | Name   | City       | DOB  | aadhaar_no | SSN    |
+              +--------+------------+------+------------+--------+
+              | Mishab | Balussery  | 2001 |    1112233 | 683645 |
+              | Aysha  | Koduvally  | 2000 |  333322211 |  43223 |
+              | Nihal  | Ponoor     | 2002 |    5544433 | 423234 |
+              | Niya   | Ponoor     | 1998 |   22233555 | 423412 |
+              | Aleefa | Mukkam     | 2003 |    3332211 |  56654 |
+              | Minhaj | Malappuram | NULL |      66545 |   NULL |
+              +--------+------------+------+------------+--------+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+      
+      3-----> Savepoint
+      
+      mysql > SET AUTOCOMMIT=OFF;
+              Query OK, 0 rows affected (0.00 sec)
+
+      mysql > INSERT INTO EMPLOYEE VALUES('Sana','Kochi',2003,5435454,866565);
+              Query OK, 1 row affected (0.00 sec)
+           
+      mysql > SAVEPOINT P1;
+              Query OK, 0 rows affected (0.00 sec)
+
+      mysql > INSERT INTO EMPLOYEE VALUES('Jinn','Kannur',2001,9986554,887756);
+              Query OK, 1 row affected (0.00 sec)
+              
+      mysql > SAVEPOINT P2;
+              Query OK, 0 rows affected (0.00 sec)
+              
+      mysql > SELECT * FROM EMPLOYEE;
+              +--------+-----------+------+------------+--------+
+              | Name   | City      | DOB  | aadhaar_no | SSN    |
+              +--------+-----------+------+------------+--------+
+              | Mishab | Balussery | 2001 |    1112233 | 683645 |
+              | Aysha  | Koduvally | 2000 |  333322211 |  43223 |
+              | Nihal  | Ponoor    | 2002 |    5544433 | 423234 |
+              | Niya   | Ponoor    | 1998 |   22233555 | 423412 |
+              | Aleefa | Mukkam    | 2003 |    3332211 |  56654 |
+              | Minhaj | Malappuram| NULL |     66545  |  NULL  |
+              | Sana   | Kochi     | 2003 |    5435454 | 866565 |
+              | Jinn   | Kannur    | 2001 |    9986554 | 887756 |
+              +--------+-----------+------+------------+--------+
+ 
+      mysql > ROLLBACK TO P1;
+              Query OK, 0 rows affected (0.01 sec)
+
+      mysql > SELECT * FROM EMPLOYEE;
+              +--------+-----------+------+------------+--------+
+              | Name   | City      | DOB  | aadhaar_no | SSN    |
+              +--------+-----------+------+------------+--------+
+              | Mishab | Balussery | 2001 |    1112233 | 683645 |
+              | Aysha  | Koduvally | 2000 |  333322211 |  43223 |
+              | Nihal  | Ponoor    | 2002 |    5544433 | 423234 |
+              | Niya   | Ponoor    | 1998 |   22233555 | 423412 |
+              | Aleefa | Mukkam    | 2003 |    3332211 |  56654 |
+              | Minhaj | Malappuram| NULL |     66545  |  NULL  |
+              | Sana   | Kochi     | 2003 |    5435454 | 866565 |
+              +--------+-----------+------+------------+--------+
+              
+              
+=============================================================================================================================================================
+
+
+   b) DCL COMMANDS :
+ 
+      Create two users user1, user2
+      
+      1-----> GRANT :
+                -> Give insert and select privilege to user 1 on customer table in the invoice database.
+                -> Give update and delete privilege to user 2 on all tables in the invoice database.
+      
+      mysql > CREATE USER MSB@'localhost' IDENTIFIED BY 'msb';
+              Query OK, 0 rows affected (0.05 sec)
+
+      mysql > CREATE USER MSB2@'localhost' IDENTIFIED BY 'msb2';
+              Query OK, 0 rows affected (0.00 sec)
+              
+      mysql > SELECT user FROM mysql.user;
+              +------------------+
+              | user             |
+              +------------------+
+              | MSB              |
+              | MSB2             |
+              | debian-sys-maint |
+              | msb              |
+              | mysql.session    |
+              | mysql.sys        |
+              | root             |
+              +------------------+
+         
+      mysql > GRANT INSERT,SELECT ON CUSTOMER TO 'MSB'@'localhost';
+              Query OK, 0 rows affected (0.00 sec)
+
+      mysql > SHOW GRANTS FOR MSB@'localhost';
+              +-------------------------------------------------------------------+
+              | Grants for MSB@localhost                                          |
+              +-------------------------------------------------------------------+
+              | GRANT USAGE ON *.* TO 'MSB'@'localhost'                           |
+              | GRANT SELECT, INSERT ON `INVOICE`.`CUSTOMER` TO 'MSB'@'localhost' |
+              +-------------------------------------------------------------------+
+
+      mysql > GRANT UPDATE,DELETE ON INVOICE.* TO MSB2@'localhost';
+              Query OK, 0 rows affected (0.00 sec)
+
+      mysql > SHOW GRANTS FOR MSB2@'localhost';
+              +-----------------------------------------------------------+
+              | Grants for MSB2@localhost                                 |
+              +-----------------------------------------------------------+
+              | GRANT USAGE ON *.* TO 'MSB2'@'localhost'                  |
+              | GRANT UPDATE, DELETE ON `INVOICE`.* TO 'MSB2'@'localhost' |
+              +-----------------------------------------------------------+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+      2-----> REVOKE :
+                 -> Remove delete privilege of user 2.
+                 
+      mysql > REVOKE DELETE ON INVOICE.* FROM MSB2@'localhost';
+              Query OK, 0 rows affected (0.00 sec)
+
+      mysql > SHOW GRANTS FOR MSB2@'localhost';
+              +---------------------------------------------------+
+              | Grants for MSB2@localhost                         |
+              +---------------------------------------------------+
+              | GRANT USAGE ON *.* TO 'MSB2'@'localhost'          |
+              | GRANT UPDATE ON `INVOICE`.* TO 'MSB2'@'localhost' |
+              +---------------------------------------------------+
+            
+                     
+=============================================================================================================================================================
+
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   

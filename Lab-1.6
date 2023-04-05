@@ -1,0 +1,46 @@
+EXP 1.6
+****************************************************************************************************************************************
+     
+     1-----> Create a view for customers who have purchased products.
+     
+     mysql > CREATE VIEW CU AS SELECT * FROM CUSTOMER WHERE Id IN(SELECT CUST_ID FROMINVOICE_MASTER);
+             Query OK, 0 rows affected (0.51 sec)
+             
+     mysql > SELECT * FROM CU;
+              +-----+--------+-----------+-----------+-------------+
+              | Id  | NAME   | ADDRESS   | CITY      | PH_NO       |
+              +-----+--------+-----------+-----------+-------------+
+              | 100 | Mishab | Balussery | Calicut   | 5345453434  |
+              | 101 | Nihal  | Ponoor    | Calicut   | 312313213   |
+              | 102 | Aysha  | Koduvally | Calicut   | 77567675656 |
+              | 104 | Aleefa | Mukkam    | Calicut   | 8989978789  |
+              | 105 | Salha  | Mukkam    | Kozhikode | 99886665    |
+              +-----+--------+-----------+-----------+-------------+
+              5 rows in set (0.01 sec)
+-------------------------------------------------------------------------------------------------------------------------------------------------------                
+     2-----> Create a view for invoice products[cust_name, , inv_id, product_id, quantity]
+     
+     mysql > CREATE VIEW INVOICE_PRODUCT AS SELECT CUSTOMER.NAME,INVOICE_MASTER.INV_ID,PRODUCT.PID,INVOICE_ITEM.QUANTITY FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.Id=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON PRODUCT.PID=INVOICE_ITEM.PID;
+             Query OK, 0 rows affected (0.03 sec)
+
+     mysql > CREATE VIEW C_P AS SELECT CUSTOMER.NAME,PRODUCT.PID,INVOICE_ITEM.QUANTITY FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.Id=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON PRODUCT.PID=INVOICE_ITEM.PID;
+             Query OK, 0 rows affected (0.05 sec)
+
+     mysql > SELECT * FROM C_P;
+              +--------+-----+----------+
+              | NAME   | PID | QUANTITY |
+              +--------+-----+----------+
+              | Aysha  | 102 |       10 |
+              | Aleefa | 103 |       10 |
+              | Nihal  | 110 |       20 |
+              | Mishab | 109 |       30 |
+              | Nihal  | 106 |       13 |
+              | Aysha  | 105 |       11 |
+              | Aysha  | 101 |       32 |
+              +--------+-----+----------+
+              7 rows in set (0.00 sec)
+              
+ =============================================================================================================================================================
+
+
+

@@ -1,0 +1,86 @@
+EXP 1.7
+****************************************************************************************************************************************
+
+     1-----> List product name, price except fruits on price order.
+     
+     mysql > SELECT PNAME,PRICE FROM PRODUCT WHERE PNAME!='Pinapple' ORDER BY PRICE ASC;
+              +------------+-------+
+              | PNAME      | PRICE |
+              +------------+-------+
+              | Waterlemon |    24 |
+              | Anar       |    29 |
+              | Apple      |    33 |
+              | Tomato     |    42 |
+              | Orange     |    49 |
+              | Onion      |    51 |
+              | Graphe     |    56 |
+              | Banana     |    70 |
+              | Avacado    |    98 |
+              +------------+-------+
+              9 rows in set (0.00 sec)
+              
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+     2-----> Find minimum, maximum and average price of products.
+     
+     mysql > SELECT MIN(PRICE),MAX(PRICE),AVG(PRICE) FROM PRODUCT;
+              +------------+------------+------------+
+              | MIN(PRICE) | MAX(PRICE) | AVG(PRICE) |
+              +------------+------------+------------+
+              |         22 |         98 |    47.4000 |
+              +------------+------------+------------+
+              1 row in set (0.00 sec)
+              
+----------------------------------------------------------------------------------------------------------------------------------------------              
+
+     3-----> Find number of customers in each city.
+     
+     mysql > SELECT COUNT(*),CITY FROM CUSTOMER GROUP BY CITY;
+              +----------+------------+
+              | COUNT(*) | CITY       |
+              +----------+------------+
+              |        6 | Calicut    |
+              |        1 | Kozhikode  |
+              |        1 | Malappuram |
+              +----------+------------+
+              3 rows in set (0.00 sec)
+        
+----------------------------------------------------------------------------------------------------------------------------------------------        
+        
+     4-----> Find number of customers in each city, only include city with more than 2 customers.
+     
+     mysql > SELECT COUNT(*),CITY FROM CUSTOMER GROUP BY CITY HAVING COUNT(*)>2;
+              +----------+---------+
+              | COUNT(*) | CITY    |
+              +----------+---------+
+              |        6 | Calicut |
+              +----------+---------+
+              1 row in set (0.01 sec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+     5-----> Show data as displayed ‘who, where’ Eg: ‘customer1 lives in Calicut’.
+     
+     mysql > SELECT CONCAT(NAME, " LIVES IN ", CITY) AS CUST_INFO FROM CUSTOMER;
+              +--------------------------+
+              | CUST_INFO                |
+              +--------------------------+
+              | Mishab LIVES IN Calicut  |
+              | Nihal LIVES IN Calicut   |
+              | Aysha LIVES IN Calicut   |
+              | Aleefa LIVES IN Calicut  |
+              | Salha LIVES IN Kozhikode |
+              | Hiba LIVES IN Malappuram |
+              | Karthik LIVES IN Calicut |
+              | Maanas LIVES IN Calicut  |
+              +--------------------------+
+              8 rows in set (0.00 sec)
+
+ =============================================================================================================================================================
+
+
+
+
+
+
+

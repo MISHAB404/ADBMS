@@ -1,0 +1,143 @@
+EXP 1.8
+****************************************************************************************************************************************
+
+     mysql > SELECT * FROM CUSTOMER;
+              +-----+---------+----------------+------------+-------------+
+              | Id  | NAME    | ADDRESS        | CITY       | PH_NO       |
+              +-----+---------+----------------+------------+-------------+
+              | 100 | Mishab  | Balussery      | Calicut    | 5345453434  |
+              | 101 | Nihal   | Ponoor         | Calicut    | 312313213   |
+              | 102 | Aysha   | Koduvally      | Calicut    | 77567675656 |
+              | 104 | Aleefa  | Mukkam         | Calicut    | 8989978789  |
+              | 105 | Salha   | Mukkam         | Kozhikode  | 99886665    |
+              | 106 | Hiba    | Perinthalmanna | Malappuram | 428348234   |
+              | 107 | Karthik | Kakkur         | Calicut    | NULL        |
+              | 108 | Maanas  | Thamarassery   | Calicut    | NULL        |
+              +-----+---------+----------------+------------+-------------+
+              8 rows in set (0.00 sec)
+              
+     mysql > SELECT * FROM PRODUCT;
+              +-----+------------+-------+
+              | PID | PNAME      | PRICE |
+              +-----+------------+-------+
+              | 101 | Orange     |    49 |
+              | 102 | Apple      |    33 |
+              | 103 | Graphe     |    56 |
+              | 104 | Banana     |    70 |
+              | 105 | Tomato     |    42 |
+              | 106 | Onion      |    51 |
+              | 107 | Avacado    |    98 |
+              | 108 | Pinapple   |    22 |
+              | 109 | Anar       |    29 |
+              | 110 | Waterlemon |    24 |
+              +-----+------------+-------+
+              10 rows in set (0.00 sec)
+              
+     mysql > SELECT * FROM INVOICE_MASTER;
+              +---------+---------+------------+
+              | INV_ID  | CUST_ID | INV_DATE   |
+              +---------+---------+------------+
+              |   11088 |     102 | 2023-07-24 |
+              |   77088 |     100 | 2023-02-11 |
+              |  115256 |     104 | 2023-01-24 |
+              |  435256 |     101 | 2023-01-24 |
+              |  656456 |     100 | 2023-03-12 |
+              |  725356 |     105 | 2023-01-29 |
+              | 3325356 |     102 | 2023-05-09 |
+              | 5435356 |     101 | 2023-03-12 |
+              | 6535356 |     102 | 2023-05-11 |
+              | 7784088 |     102 | 2023-02-18 |
+              +---------+---------+------------+
+              10 rows in set (0.00 sec)
+              
+     mysql > SELECT * FROM INVOICE_ITEM;
+              +---------+------+----------+
+              | INV_ID  | PID  | QUANTITY |
+              +---------+------+----------+
+              |   11088 |  102 |       10 |
+              |  115256 |  103 |       10 |
+              |  435256 |  110 |       20 |
+              |  656456 |  109 |       30 |
+              | 5435356 |  106 |       13 |
+              | 6535356 |  105 |       11 |
+              | 7784088 |  101 |       32 |
+              +---------+------+----------+
+              7 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+     1-----> List the product name and quantity of invoice items.
+     
+     mysql > SELECT PRODUCT.PNAME,INVOICE_ITEM.QUANTITY FROM PRODUCT INNER JOIN INVOICE_ITEM ON PRODUCT.PID=INVOICE_ITEM.PID;
+              +------------+----------+
+              | PNAME      | QUANTITY |
+              +------------+----------+
+              | Apple      |       10 |
+              | Graphe     |       10 |
+              | Waterlemon |       20 |
+              | Anar       |       30 |
+              | Onion      |       13 |
+              | Tomato     |       11 |
+              | Orange     |       32 |
+              +------------+----------+
+              7 rows in set (0.02 sec)
+  
+-------------------------------------------------------------------------------------------------------------------------------------------------------    
+  
+     2-----> Display invoice details of the transaction dated ’2023-01-24’.
+     
+     mysql > SELECT INVOICE_MASTER.INV_DATE,INVOICE_MASTER.CUST_ID,CUSTOMER.NAME,INVOICE_ITEM.PID,PRODUCT.PNAME,INVOICE_ITEM.QUANTITY FROM INVOICE_MASTER INNER JOIN INVOICE_ITEM ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON PRODUCT.PID=INVOICE_ITEM.PID INNER JOIN CUSTOMER ON CUSTOMER.Id=INVOICE_MASTER.CUST_ID WHERE INV_DATE='2023-01-24';
+              +------------+---------+--------+------+------------+----------+
+              | INV_DATE   | CUST_ID | NAME   | PID  | PNAME      | QUANTITY |
+              +------------+---------+--------+------+------------+----------+
+              | 2023-01-24 |     104 | Aleefa |  103 | Graphe     |       10 |
+              | 2023-01-24 |     101 | Nihal  |  110 | Waterlemon |       20 |
+              +------------+---------+--------+------+------------+----------+
+              2 rows in set (0.00 sec)
+              
+-------------------------------------------------------------------------------------------------------------------------------------------------------    
+
+     3-----> Display the customer name, product name, invoice date of purchased item ‘Onion’.
+     
+     mysql > SELECT CUSTOMER.NAME,PRODUCT.PNAME,INVOICE_MASTER.INV_DATE FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.Id=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON INVOICE_ITEM.PID=PRODUCT.PID WHERE PNAME="Onion";
+              +-------+-------+------------+
+              | NAME  | PNAME | INV_DATE   |
+              +-------+-------+------------+
+              | Nihal | Onion | 2023-03-12 |
+              +-------+-------+------------+
+              1 row in set (0.00 sec)
+              
+ -------------------------------------------------------------------------------------------------------------------------------------------------------             
+
+     4-----> Display all customer details and invoice details must include customer has not purchased items.
+     
+     mysql > SELECT CUSTOMER.NAME,INVOICE_MASTER.INV_ID,INVOICE_MASTER.INV_DATE,PRODUCT.PNAME FROM CUSTOMER LEFT JOIN INVOICE_MASTER ON CUSTOMER.Id=INVOICE_MASTER.CUST_ID LEFT JOIN INVOICE_ITEM ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID LEFT JOIN PRODUCT ON PRODUCT.PID=INVOICE_ITEM.PID;
+              +---------+---------+------------+------------+
+              | NAME    | INV_ID  | INV_DATE   | PNAME      |
+              +---------+---------+------------+------------+
+              | Aysha   |   11088 | 2023-07-24 | Apple      |
+              | Mishab  |   77088 | 2023-02-11 | NULL       |
+              | Aleefa  |  115256 | 2023-01-24 | Graphe     |
+              | Nihal   |  435256 | 2023-01-24 | Waterlemon |
+              | Mishab  |  656456 | 2023-03-12 | Anar       |
+              | Salha   |  725356 | 2023-01-29 | NULL       |
+              | Aysha   | 3325356 | 2023-05-09 | NULL       |
+              | Nihal   | 5435356 | 2023-03-12 | Onion      |
+              | Aysha   | 6535356 | 2023-05-11 | Tomato     |
+              | Aysha   | 7784088 | 2023-02-18 | Orange     |
+              | Hiba    |    NULL | NULL       | NULL       |
+              | Karthik |    NULL | NULL       | NULL       |
+              | Maanas  |    NULL | NULL       | NULL       |
+              +---------+---------+------------+------------+
+              13 rows in set (0.02 sec)
+
+ =============================================================================================================================================================
+
+
+
+
+
+
+
+              
+       

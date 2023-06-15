@@ -1,0 +1,125 @@
+EXP 2.1
+****************************************************************************************************************************************
+
+     1-----> Create a procedure to display all tables in the invoice database
+         
+     mysql > DELIMITER //
+     mysql > CREATE PROCEDURE ALLINVOICE5() BEGIN SELECT * FROM CUSTOMER;SELECT * FROM INVOICE_ITEM;SELECT * FROM INVOICE_MASTER;SELECT * FROM PRODUCT; END //
+             Query OK, 0 rows affected (0.06 sec)
+             
+     mysql> CALL ALLINVOICE5();//
+      +-----+---------+----------------+------------+-------------+
+      | Id  | NAME    | ADDRESS        | CITY       | PH_NO       |
+      +-----+---------+----------------+------------+-------------+
+      | 100 | Mishab  | Balussery      | Calicut    | 5345453434  |
+      | 101 | Nihal   | Ponoor         | Calicut    | 312313213   |
+      | 102 | Aysha   | Koduvally      | Calicut    | 77567675656 |
+      | 104 | Aleefa  | Mukkam         | Calicut    | 8989978789  |
+      | 105 | Salha   | Mukkam         | Kozhikode  | 99886665    |
+      | 106 | Hiba    | Perinthalmanna | Malappuram | 428348234   |
+      | 107 | Karthik | Kakkur         | Calicut    | NULL        |
+      | 108 | Maanas  | Thamarassery   | Calicut    | NULL        |
+      +-----+---------+----------------+------------+-------------+
+      8 rows in set (0.00 sec)
+      
+      +---------+------+----------+
+      | INV_ID  | PID  | QUANTITY |
+      +---------+------+----------+
+      |   11088 |  102 |       10 |
+      |  115256 |  103 |       10 |
+      |  435256 |  110 |       20 |
+      |  656456 |  109 |       30 |
+      | 5435356 |  106 |       13 |
+      | 6535356 |  105 |       11 |
+      | 7784088 |  101 |       32 |
+      +---------+------+----------+
+      7 rows in set (0.01 sec)
+      
+      +---------+---------+------------+
+      | INV_ID  | CUST_ID | INV_DATE   |
+      +---------+---------+------------+
+      |   11088 |     102 | 2023-07-24 |
+      |   77088 |     100 | 2023-02-11 |
+      |  115256 |     104 | 2023-01-24 |
+      |  435256 |     101 | 2023-01-24 |
+      |  656456 |     100 | 2023-03-12 |
+      |  725356 |     105 | 2023-01-29 |
+      | 3325356 |     102 | 2023-05-09 |
+      | 5435356 |     101 | 2023-03-12 |
+      | 6535356 |     102 | 2023-05-11 |
+      | 7784088 |     102 | 2023-02-18 |
+      +---------+---------+------------+
+      10 rows in set (0.00 sec)
+      
+      +-----+------------+-------+
+      | PID | PNAME      | PRICE |
+      +-----+------------+-------+
+      | 101 | Orange     |    54 |
+      | 102 | Apple      |    38 |
+      | 103 | Graphe     |    61 |
+      | 104 | Banana     |    75 |
+      | 105 | Tomato     |    47 |
+      | 106 | Onion      |    56 |
+      | 107 | Avacado    |   103 |
+      | 108 | Pinapple   |    27 |
+      | 109 | Anar       |    34 |
+      | 110 | Waterlemon |    29 |
+      +-----+------------+-------+
+      10 rows in set (0.00 sec)
+      
+      Query OK, 0 rows affected (0.00 sec)
+      
+-------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+     2-----> Create a procedure to find greatest of 3 numbers.
+     
+     mysql > create procedure greatest(a int, b int , c int)
+          -> Begin
+          -> If (a>b) AND (a>c) then
+          -> Select a as 'greater';
+          -> Elseif (b>c)  AND (b>a) then
+          -> Select b as 'greater';
+          -> Else
+          -> Select c as 'greater';
+          -> End if;
+          -> END //
+
+    Query OK, 0 rows affected (0.00 sec)
+
+    mysql > CALL greatest(10,7,100);//
+            +---------+
+            | greater |
+            +---------+
+            |     100 |
+            +---------+
+            1 row in set (0.00 sec)
+
+            Query OK, 0 rows affected (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+     3-----> Create a procedure to display invoice details of a particular customer.
+     
+     mysql > CREATE PROCEDURE CUSTP(N varchar(30)) BEGIN SELECT CUSTOMER.NAME,INVOICE_MASTER.*,PRODUCT.PNAME,INVOICE_ITEM.PID,INVOICE_ITEM.QUANTITY FROM INVOICE_ITEM INNER JOIN INVOICE_MASTER ON INVOICE_MASTER.INV_ID=INVOICE_ITEM.INV_ID INNER JOIN PRODUCT ON PRODUCT.PID=INVOICE_ITEM.PID INNER JOIN CUSTOMER ON CUSTOMER.Id=INVOICE_MASTER.CUST_ID WHERE CUSTOMER.NAME=N; END //
+             Query OK, 0 rows affected (0.00 sec)
+
+             mysql > CALL CUSTP('Mishab'); //
+              +-------+---------+---------+------------+-------------+------+-----------+
+              | NAME   | INV_ID  | CUST_ID | INV_DATE   | PNAME       | PID  | QUANTITY |
+              +-------+---------+---------+------------+-------------+------+-----------+
+              | Mishab |   16031 |     100 | 2023-03-16 | Orange      |  101 |        2 |
+              | Mishab |   16031 |     100 | 2023-03-16 | Banana      |  104 |        2 |
+              | Mishab |   16031 |     100 | 2023-03-16 | Anar        |  109 |        2 |
+              | Mishab | 2201236 |     100 | 2023-01-22 | Avacado     |  107 |        2 |
+              +-------+---------+---------+------------+--------------+------+----------+
+              4 rows in set (0.00 sec)
+
+            Query OK, 0 rows affected (0.00 sec)
+
+ =============================================================================================================================================================
+
+
+
+
+
+

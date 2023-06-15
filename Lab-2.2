@@ -1,0 +1,40 @@
+EXP 2.1
+****************************************************************************************************************************************
+
+     1-----> Create a function to calculate price_range(low, medium, high) of each product. If price<=5 indicate as low, upto 50 indicate as medium, and above as high.
+     
+     mysql > CREATE FUNCTION PRICEIND(PRICE INT) RETURNS VARCHAR(20)
+          -> DETERMINISTIC
+          -> BEGIN
+          -> DECLARE PRICE_IND VARCHAR(20);
+          -> IF PRICE<=30 THEN SET PRICE_IND='LOW';
+          -> ELSEIF(PRICE>30 AND PRICE<=50) THEN SET PRICE_IND='MEDIUM';
+          -> ELSEIF PRICE>50 THEN SET PRICE_IND='HIGH';
+          -> END IF;
+          -> RETURN(PRICE_IND);
+          -> END //
+          
+          Query OK, 0 rows affected (0.00 sec)
+          
+     mysql> SELECT PID,PNAME,PRICE,PRICEIND(PRICE) FROM PRODUCT; //
+            +-----+------------+--------+----------------+
+            | PID | PNAME      | PRICE | PRICEIND(PRICE) |
+            +-----+---------------------+----------------+
+            | 101 | Orange     |    54 | MEDIUM          | 
+            | 102 | Apple      |    38 | MEDIUM          | 
+            | 103 | Graphe     |    61 | HIGH            | 
+            | 104 | Banana     |    75 | HIGH            |
+            | 105 | Tomato     |    47 | MEDIUM          | 
+            | 106 | Onion      |    56 | MEDIUM          | 
+            | 107 | Avacado    |   103 | HIGH            | 
+            | 108 | Pinapple   |    27 | LOW             | 
+            | 109 | Anar       |    34 | MEDIUM          | 
+            | 110 | Waterlemon |    29 | LOW             | 
+            +-----+------------+-------+-----------------+
+
+
+     
+-------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+      
+

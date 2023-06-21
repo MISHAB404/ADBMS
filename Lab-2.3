@@ -1,0 +1,64 @@
+EXP 2.3
+****************************************************************************************************************************************
+
+     1-----> Create a trigger to handle updates to the customer table.
+     
+     mysql > CREATE TRIGGER CUST_TRIG AFTER UPDATE ON CUSTOMER FOR EACH ROW BEGIN INSERT INTO CUST SET Id=NEW.Id, NAME=NEW.NAME,ADDRESS=NEW.ADDRESS,CITY=NEW.CITY,PH_NO=NEW.PH_NO; END //;
+             Query OK, 0 rows affected (0.09 sec)
+
+     mysql > UPDATE CUSTOMER SET ADDRESS="Narikkuni" WHERE Id=100 //;
+             Query OK, 1 row affected (0.06 sec)
+             Rows matched: 1  Changed: 1  Warnings: 0
+
+     mysql > UPDATE CUSTOMER SET PH_NO=9912856722 WHERE Id=101 //;
+             Query OK, 1 row affected (0.10 sec)
+             Rows matched: 1  Changed: 1  Warnings: 0
+            
+     mysql > SELECT * FROM CUST //;
+              +-----+--------+--------------+-----------+------------+
+              | Id  | NAME   | ADDRESS      | CITY      | PH_NO      |
+              +-----+--------+--------------+-----------+------------+
+              | 100 | Mishab | Narikkuni    | Calicut   | 5345453434 |
+              | 101 | Nihal  | Narikkuni    | Calicut   | 9912856722 |
+              +-----+--------+--------------+-----------+------------+
+              2 rows in set (0.00 sec)
+              
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+     2-----> Create a trigger to handle inserts to the product relation ( if price < 5 then set price to 10).
+     
+     mysql > CREATE TRIGGER CH_PR
+          -> BEFORE insert
+          -> ON PRODUCT
+          -> FOR EACH ROW
+          -> BEGIN
+          -> IF NEW.PRICE<5
+          -> THEN
+          -> SET NEW.PRICE=10;
+          -> END IF;
+          -> END; //
+             Query OK, 0 rows affected (0.48 sec)
+
+     mysql > INSERT INTO PRODUCT VALUES(111,'Mango',20); //
+             Query OK, 1 row affected (0.06 sec)
+
+     mysql> SELECT * FROM PRODUCT; //
+             +-----+------------+-------+    
+             | PID | PNAME      | PRICE |
+             +-----+------------+-------+
+             | 101 | Orange     |    50 |
+             | 102 | Apple      |    34 |
+             | 103 | Graphe     |    57 |
+             | 104 | Banana     |    71 |
+             | 105 | Tomato     |    43 |
+             | 106 | Onion      |    52 |
+             | 107 | Avacado    |   100 |
+             | 108 | Pinapple   |    22 |
+             | 109 | Anar       |    13 |
+             | 110 | Waterlemon |    24 |
+             | 111 | Mango      |    20 |
+             +-----+------------+-------+
+
+=============================================================================================================================================================      
+
+

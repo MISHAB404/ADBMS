@@ -1,0 +1,75 @@
+MONGODB 6.0
+******************************************************************************************************************************************************
+
+1---------> Write a MongoDB query to create a user “CUSTOMER1” and grant the read role in the INVOICE database.
+---------------------------------------------------------------------------------------------------------------
+
+---> use admin
+      switched to db admin
+---> db.createUser({user:"msb",pwd:"msb",roles:[{role:"read",db:"invoice"}]})
+      Successfully added user: {
+        "user" : "msb",
+        "roles" : [
+          {
+            "role" : "read",
+            "db" : "invoice"
+          }
+        ]
+      }
+
+
+$ mongo -u msb -p
+MongoDB shell version: 3.2.22
+Enter password: 
+connecting to: test
+> 
+
+====================================================================================================================================================================      
+      
+2---------> Write a MongoDB query to create the backup for the INVOICE database.
+--------------------------------------------------------------------------------
+
+$ mongodump
+  2023-06-22T15:40:04.543+0530	writing admin.system.users to 
+  2023-06-22T15:40:04.544+0530	done dumping admin.system.users (4 documents)
+  2023-06-22T15:40:04.544+0530	writing admin.system.version to 
+  2023-06-22T15:40:04.544+0530	done dumping admin.system.version (1 document)
+  2023-06-22T15:40:04.544+0530	writing invoice.customer to 
+  2023-06-22T15:40:04.545+0530	writing invoice.product to 
+  2023-06-22T15:40:04.545+0530	done dumping invoice.customer (6 documents)
+  2023-06-22T15:40:04.546+0530	done dumping invoice.product (0 documents)
+
+
+====================================================================================================================================================================      
+      
+3---------> Write a MongoDB query to restore a particular database or a collection.
+-----------------------------------------------------------------------------------
+
+---> use invoice
+     switched to db invoice
+---> db.dropDatabase()
+     { "dropped" : "invoice", "ok" : 1 }
+---> show dbs
+    admin  0.000GB
+    local  0.000GB
+    
+$ mongorestore --db invoice dump/invoice
+  2023-06-22T15:45:03.522+0530	building a list of collections to restore from dump/invoice dir
+  2023-06-22T15:45:03.522+0530	reading metadata for invoice.customer from dump/invoice/customer.metadata.json
+  2023-06-22T15:45:03.523+0530	reading metadata for invoice.product from dump/invoice/product.metadata.json
+  2023-06-22T15:45:03.741+0530	restoring invoice.customer from dump/invoice/customer.bson
+  2023-06-22T15:45:04.026+0530	restoring invoice.product from dump/invoice/product.bson
+  2023-06-22T15:45:04.027+0530	restoring indexes for collection invoice.product from metadata
+  2023-06-22T15:45:04.027+0530	restoring indexes for collection invoice.customer from metadata
+  2023-06-22T15:45:04.027+0530	finished restoring invoice.product (0 documents)
+  2023-06-22T15:45:04.027+0530	finished restoring invoice.customer (6 documents)
+  2023-06-22T15:45:04.027+0530	done
+  
+---> show dbs
+      admin    0.000GB
+      invoice  0.000GB
+      local    0.000GB
+     
+====================================================================================================================================================================
+
+

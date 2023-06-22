@@ -1,0 +1,147 @@
+MONGODB 3.0
+******************************************************************************************************************************************************
+
+1---------> Write a MongoDB query to create an INVOICE database and collections (CUSTOMER, PRODUCT) and its corresponding documents.
+-----------------------------------------------------------------------------------------------------------------------------------
+
+---> use invoice
+      switched to db invoice
+---> db.createCollection('customer')
+      { "ok" : 1 }
+---> db.createCollection('product')
+      { "ok" : 1 }
+
+---> show collections
+      customer
+      product
+---> db.customer.insert({name:'Mishab',age:22,city:'calicut',phno:997665545})
+      WriteResult({ "nInserted" : 1 })
+
+---> db.customer.insertMany([
+      ... {name:'Mishab',age:22,city:'calicut',phno:657677534},
+      ... {name:'Nihal',age:25,city:'kannur',phno:223423423},
+      ... {name:'Sravan',age:28,city:'kollam',phno:976965756}])
+      {
+        "acknowledged" : true,
+        "insertedIds" : [
+          ObjectId("64940eb6abf403a825925f38"),
+          ObjectId("64940eb6abf403a825925f39"),
+          ObjectId("64940eb6abf403a825925f3a")
+        ]
+      }
+      
+====================================================================================================================================================================      
+      
+2---------> Write a MongoDB query to find all documents from the collection CUSTOMER
+------------------------------------------------------------------------------------
+
+---> db.customer.find().pretty()
+      {
+        "_id" : ObjectId("6492cc575630507e8a179045"),
+        "name" : "Mishab",
+        "age" : 22,
+        "city" : "Calicut",
+        "phno" : 9988776655
+      }
+     
+      {
+        "_id" : ObjectId("64940eb6abf403a825925f38"),
+        "name" : "Mishab",
+        "age" : 22,
+        "city" : "calicut",
+        "phno" : 657677534
+      }
+      {
+        "_id" : ObjectId("64940eb6abf403a825925f39"),
+        "name" : "Nihal",
+        "age" : 25,
+        "city" : "kannur",
+        "phno" : 223423423
+      }
+      {
+        "_id" : ObjectId("64940eb6abf403a825925f3a"),
+        "name" : "Sravan",
+        "age" : 28,
+        "city" : "kollam",
+        "phno" : 976965756
+      }
+
+====================================================================================================================================================================      
+      
+3---------> Write a MongoDB query to update the city in the collection CUSTOMER.
+--------------------------------------------------------------------------------
+
+---> db.customer.update({city:'Calicut'},{$set:{city:'Kozhikode'}})
+     WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+---> db.customer.find().pretty()
+    {
+      "_id" : ObjectId("6492cc575630507e8a179045"),
+      "name" : "Mishab",
+      "age" : 22,
+      "city" : "Kozhikode",
+      "phno" : 9988776655
+    }
+    {
+      "_id" : ObjectId("64940eb6abf403a825925f38"),
+      "name" : "Mishab",
+      "age" : 22,
+      "city" : "calicut",
+      "phno" : 657677534
+    }
+    {
+      "_id" : ObjectId("64940eb6abf403a825925f39"),
+      "name" : "Nihal",
+      "age" : 25,
+      "city" : "kannur",
+      "phno" : 223423423
+    }
+    {
+      "_id" : ObjectId("64940eb6abf403a825925f3a"),
+      "name" : "Sravan",
+      "age" : 28,
+      "city" : "kollam",
+      "phno" : 976965756
+    }
+
+====================================================================================================================================================================      
+      
+4---------> Write a MongoDB query to delete the first matched document whose city is “Calicut”.
+----------------------------------------------------------------------------------------------
+
+---> db.customer.deleteOne({city:'Calicut'})
+      { "acknowledged" : true, "deletedCount" : 1 }
+--->  db.customer.find().pretty()
+      {
+        "_id" : ObjectId("6492cc575630507e8a179045"),
+        "name" : "Mishab",
+        "age" : 22,
+        "city" : "Kozhikode",
+        "phno" : 9988776655
+      }
+      {
+        "_id" : ObjectId("64940eb6abf403a825925f38"),
+        "name" : "Mishab",
+        "age" : 22,
+        "city" : "calicut",
+        "phno" : 657677534
+      }
+      {
+        "_id" : ObjectId("64940eb6abf403a825925f39"),
+        "name" : "Nihal",
+        "age" : 25,
+        "city" : "kannur",
+        "phno" : 223423423
+      }
+      {
+        "_id" : ObjectId("64940eb6abf403a825925f3a"),
+        "name" : "Sravan",
+        "age" : 28,
+        "city" : "kollam",
+        "phno" : 976965756
+      }
+
+====================================================================================================================================================================
+
+
+
+

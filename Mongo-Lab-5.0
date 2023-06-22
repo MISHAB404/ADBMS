@@ -1,0 +1,59 @@
+MONGODB 5.0
+******************************************************************************************************************************************************
+
+1---------> Write a MongoDB query to sort customer details in ascending order of their name.
+--------------------------------------------------------------------------------------------
+
+---> db.customer.find().sort({name:1}).pretty()
+      {
+        "_id" : ObjectId("6492cc575630507e8a179045"),
+        "name" : "Mishab",
+        "age" : 22,
+        "city" : "Kozhikode",
+        "phno" : 9988776655
+      }
+      {
+        "_id" : ObjectId("64940eb6abf403a825925f38"),
+        "name" : "Mishab",
+        "age" : 22,
+        "city" : "calicut",
+        "phno" : 657677534
+      }
+      {
+        "_id" : ObjectId("64940eb6abf403a825925f39"),
+        "name" : "Nihal",
+        "age" : 25,
+        "city" : "kannur",
+        "phno" : 223423423
+      }
+      {
+        "_id" : ObjectId("64940eb6abf403a825925f3a"),
+        "name" : "Sravan",
+        "age" : 28,
+        "city" : "kollam",
+        "phno" : 976965756
+      }
+      
+====================================================================================================================================================================      
+      
+2---------> Write a MongoDB query to count number of customers in each city.
+---------------------------------------------------------------------------
+
+---> db.customer.aggregate([{$group:{_id:"$city",count:{$sum:1}}}])
+    { "_id" : "kollam", "count" : 1 }
+    { "_id" : "kannur", "count" : 1 }
+    { "_id" : "Calicut", "count" : 1 }
+    { "_id" : "Kochi", "count" : 1 }
+    { "_id" : "Kozhikode", "count" : 1 }
+    
+====================================================================================================================================================================      
+      
+3---------> Write a MongoDB query to find minimum and maximum age in each city
+------------------------------------------------------------------------------
+
+---> db.customer.aggregate([{$group:{_id:"$city",Min_age:{$min:"$age"},Max_age:{$max:"$age"}}}]).pretty()
+    { "_id" : "kollam", "Min_age" : 28, "Max_age" : 28 }
+    { "_id" : "kannur", "Min_age" : 25, "Max_age" : 25 }
+    { "_id" : "Calicut", "Min_age" : 28, "Max_age" : 28 }
+    { "_id" : "Kochi", "Min_age" : 24, "Max_age" : 24 }
+    { "_id" : "Kozhikode", "Min_age" : 22, "Max_age" : 22 }
